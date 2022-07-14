@@ -1,0 +1,32 @@
+How to Mod this program
+1. Create code
+
+    1a. Create a new file in enderbyteprograms/consolegames/games
+    1b. Use the applicable package statement
+    1c. the class must be "public class <NAME> implements Game" so it can be correctly registered.
+    1d. The point of execution for your game will be in the function "public static int play()". (Return 0 on sucess, 1 on error)
+    1e. It is recommended to surround your play() function in a try-catch and catch ambiguos exceptions just in case. On an ambiguous Exception, return 1 after calling shared.defaultCrashHandler(). This will give a crash message to the user.
+    If you need a code example, check out testgame.java.
+
+    Another mandatory function is init(). This code will be run on program start and must
+
+        register game.name in shared.myoptions
+        register configs (if applicable)
+        Create a documentation (if applicable)
+
+2. Register game (sadly requires mixins)
+
+    2a. Using mixins, add to the END of the init() funtion in Main
+    shared.games.add(new <yourgame>());
+    
+
+3. Register Configurations (If applicable)
+
+    3a. In your game's init() function, add the following
+    REMEMBER: shared.configdat is the Cfile() instance that holds all Configurations
+    3b. Check if the config is in the file with shared.configdat.cexists()
+    If it doesn't register a new Cnode() with shared.configdat.newNode(). Cnode() is not meant to be standalone. The code is (name,defaultdata,usenum). 
+    3c. Once all Configurations are registered, they will automatically appear in the Options menu.
+
+    Within your game, Call your configurations with shared.configdat.findbyname(name).data
+    DO NOT register configurations in the cfg() function unless they are needed BEFORE YOUR GAME INITIALIZES (unlikely). only SYSTEM CONFIGS go here.

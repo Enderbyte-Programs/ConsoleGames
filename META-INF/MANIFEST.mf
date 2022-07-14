@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Created-By: Enderbyte Programs
+Main-Class: enderbyteprograms.consolegames.Main

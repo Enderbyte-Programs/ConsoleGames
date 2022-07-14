@@ -1,0 +1,27 @@
+Consolegame Manual by Enderbyte Programs (c) 1997 [nevermind (c) 2022]
+
+Welcome to ConsoleGames, a customizeable set of games for your console.
+
+=====Execution=====
+Execute the program by opening a terminal to the folder of your choice and running "java -jar <Path to disk>/consolegames.jar". On windows this will probably be D:\. For unix, check your mount points.
+
+While the program initializes (usually less than 200 ms), the screen will print: Loading.
+
+=====Main Menu=====
+The main menu will prompt you to type an option. 0 is Exit and will safely quit the program returning you to the terminal. 1 will open configuration (SEE OPTIONS).
+Numbers 2 and higher each represent a game.
+
+=====Playing=====
+When you run a number from the main menu, it will play the game associated with it. If the game crashes, you should be returned to the main menu with the traceback.
+Please send the traceback (red text) to the developer
+
+=====Options=====
+The options menu contains all of the different options that you can change to your liking. Options are stored in cfg.txt
+If you leave the field blank and press enter, the value will not be changed. Values must not contain =:= as this is the seperator.
+
+Choosing save will save to cfg.txt. Choosing cancel will not save your changes.
+
+username: Represents your name. You can set it to anything.
+
+=====Support=====
+For support, send an email to enderbyte09@gmail.com
