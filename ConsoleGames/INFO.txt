@@ -1,9 +1,0 @@
-TOTAL SIZE: 98.2 KB
-
-Normal Installation Default : 23.5 KB
-Additional created files : 16 bytes
-Full installation size: 23.5 KB
-
-Source/class size : 59.9 KB
-
-Documentation size : 2.4 KB
