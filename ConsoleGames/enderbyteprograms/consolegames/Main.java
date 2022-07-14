@@ -16,11 +16,18 @@ public class Main {
     public static void init() {
         shared.myoptions.add("Exit");
         shared.myoptions.add("Options");
-        shared.myoptions.add(testgame.name);
         shared.games.add(new testgame());
-        shared.myoptions.add(guess_the_number.name);
         shared.games.add(new guess_the_number());
-        //For mods, register here by adding to the names and games list
+        shared.games.add(new beat_the_bank());
+        
+        //For mods, register here by adding to the games list
+    }
+
+    private static void iloop() {
+        int i;
+        for (i=0;i<shared.games.size();i++) {
+            shared.games.get(i).init();
+        }
     }
     
     public static void cfg() {
@@ -37,20 +44,14 @@ public class Main {
         try {
             shared.configdat = new Cfile(enderlib.getcwd() + "/cfg.txt");
         } catch (IOException e) {
-            System.out.println(consolecolours.RED_BRIGHT + "A critical early loading error occured.");
-            e.printStackTrace();
-            System.out.println(consolecolours.RESET);
-            System.exit(-1);
+            shared.EarlyLoadCrash(e);
         }
         if (!shared.configdat.cexists("username")) {
             shared.configdat.newNode("username","User",false);
             try {
                 shared.configdat.save();
             } catch (IOException e) {
-                System.out.println(consolecolours.RED_BRIGHT + "A critical early loading error occured.");
-            e.printStackTrace();
-            System.out.println(consolecolours.RESET);
-            System.exit(-1);
+                shared.EarlyLoadCrash(e);
             }
         }
 
@@ -59,11 +60,13 @@ public class Main {
         System.out.println("Consolegames: Loading...");
         try 
         {init(); //Adding games to list
-        cfg();
+        cfg(); //Initializing global configuration
+        iloop();
+        
         int status = 0;
         while (true) {
             
-            String _header = consolecolours.CYAN + "ConsoleGames v0.5-beta-4 (c) 2022 Enderbyte Programs" + consolecolours.RESET;
+            String _header = consolecolours.CYAN + "ConsoleGames v0.2-alpha (c) 2022 Enderbyte Programs" + consolecolours.RESET;
             if (status!=0) {
                 _header = _header + consolecolours.RED_BRIGHT + "\nWe are sorry, but your previous game crashed.\n===STACKTRACE===:\n";
                 _header = _header + shared.crashstatus + consolecolours.RESET;

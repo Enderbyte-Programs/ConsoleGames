@@ -8,16 +8,25 @@ How to Mod this program
     1e. It is recommended to surround your play() function in a try-catch and catch ambiguos exceptions just in case. On an ambiguous Exception, return 1 after calling shared.defaultCrashHandler(). This will give a crash message to the user.
     If you need a code example, check out testgame.java.
 
+    Another mandatory function is init(). This code will be run on program start and must
+
+        register game.name in shared.myoptions
+        register configs (if applicable)
+        Create a documentation (if applicable)
+
 2. Register game (sadly requires mixins)
 
     2a. Using mixins, add to the END of the init() funtion in Main
     shared.games.add(new <yourgame>());
-    shared.myoptions.add("The Name of Your Game");
+    
 
-3. Register Configurations (requires mixins)
+3. Register Configurations (If applicable)
 
-    3a. Using mixins, add to the END of the cfg() function in Main
+    3a. In your game's init() function, add the following
     REMEMBER: shared.configdat is the Cfile() instance that holds all Configurations
     3b. Check if the config is in the file with shared.configdat.cexists()
     If it doesn't register a new Cnode() with shared.configdat.newNode(). Cnode() is not meant to be standalone. The code is (name,defaultdata,usenum). 
     3c. Once all Configurations are registered, they will automatically appear in the Options menu.
+
+    Within your game, Call your configurations with shared.configdat.findbyname(name).data
+    DO NOT register configurations in the cfg() function unless they are needed BEFORE YOUR GAME INITIALIZES (unlikely). only SYSTEM CONFIGS go here.

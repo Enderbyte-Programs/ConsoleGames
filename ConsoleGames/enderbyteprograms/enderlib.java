@@ -1,5 +1,7 @@
 package enderbyteprograms;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -18,9 +20,39 @@ public class enderlib {
     public static void closeInput() {
         reader.close();
     }
+    public static int system(String command) {
+        String s;
+        Process p;
+        try {
+            p = Runtime.getRuntime().exec(command);
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null)
+                System.out.println(s);
+            p.waitFor();
+            
+            p.destroy();
+        return p.exitValue();
+        } catch (Exception e) {
+            return -1;
+        }
+        
+    
+    }
+
     public static void clearscreen() {
-        System.out.print("\033[H\033[2J");  
-        System.out.flush();  
+        Process p;
+        String s;
+        try {
+            p = Runtime.getRuntime().exec("clear");
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null)
+                System.out.println(s);
+            p.waitFor();
+            
+            p.destroy();
+        } catch (Exception e) {}  
     }
 
     public static void delay(int ms) {
@@ -34,6 +66,7 @@ public class enderlib {
 
     public static int menu(String header,String title,List<String> options) {
         while (true) {
+            //clearscreen();
             clearscreen();
             System.out.println(header+"\n");
             System.out.println("====="+title+"=====");

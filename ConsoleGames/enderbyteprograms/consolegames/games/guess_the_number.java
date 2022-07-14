@@ -118,4 +118,8 @@ public class guess_the_number implements Game{
         }
         return 0;
     }
+    public void init() {
+        shared.myoptions.add(name);
+        System.out.println("Guess The Number is initialized");
+    }
 }

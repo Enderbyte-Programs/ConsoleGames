@@ -1,9 +1,12 @@
-Main v0.5-beta-4
+SYSTEM v0.2
+Modding Core v2.0
 
-Enderlib v0.3.3
+Enderlib v0.4.1
 
 CFile v1.0
 
-testgame v1.1
+testgame v1.2
 
-guess_the_number v1.0
+guess_the_number v1.1
+
+beat_the_bank v0.0.1
