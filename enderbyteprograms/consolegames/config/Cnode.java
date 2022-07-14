@@ -38,9 +38,10 @@ public class Cnode {
             }
             data = newdata;
             display = name + "=:=" + newdata;
+            System.out.println("Changed data successfully!");
+            enderlib.delay(500);
             break;
         }
-        System.out.println("Changed data successfully!");
-        enderlib.delay(500);
+        
     }
 }

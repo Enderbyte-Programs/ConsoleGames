@@ -9,4 +9,4 @@ testgame v1.2
 
 guess_the_number v1.1
 
-beat_the_bank v0.0.1
+beat_the_bank v0.0.2

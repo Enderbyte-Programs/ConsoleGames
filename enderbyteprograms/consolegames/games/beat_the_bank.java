@@ -20,6 +20,11 @@ public class beat_the_bank implements Game{
                 if (m==0) {
                     break;
                 }
+                if (m==2) {
+                    enderlib.clearscreen();
+                    System.out.println("How to Play\n\nBeat the bank is a small game created in March 2021. It is based off of a Vancouver radio game show of the same name.\nThe point is to open as many vaults as you can without getting the alarm.");
+                    enderlib.input("Press enter to return to menu...");
+                }
             }
         } catch (Exception e) { //Ambiguous error checking, will set MAIN stack trace
             shared.defaultCrashHandler(e);
@@ -27,6 +32,7 @@ public class beat_the_bank implements Game{
         }
         return 0;
     }
+
     public void init() {
         shared.myoptions.add(name);
         System.out.println("Beat The Bank is initialized");

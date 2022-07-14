@@ -10,8 +10,8 @@ How to Mod this program
 
     Another mandatory function is init(). This code will be run on program start and must
 
-        register game.name in shared.myoptions
-        register configs (if applicable)
+        register game.name in shared.myoptions (shared.myoptions.add(name);)
+        register configs (if applicable) [see section 3]
         Create a documentation (if applicable)
 
 2. Register game (sadly requires mixins)

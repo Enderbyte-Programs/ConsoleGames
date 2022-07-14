@@ -1,9 +1,9 @@
 /enderbyteprograms
-consolecolours: [2.9 KB]
+consolecolours: [2.8 KB]
 Shared variables for printing colours. Originally part of shared.
-enderlib: [4.1 KB]
+enderlib: [4.7 KB]
 Assorted utilities to make my (and your) life easier
-file: [1.6 KB]
+file: [1.5 KB]
 File reader/writer
 /enderbyteprograms/consolegames
 Main: [3.8 KB]
@@ -11,9 +11,9 @@ main point of execution. Insert mods in the init() method
 shared: [1.4 KB]
 Shared variables across program
 /enderbyteprograms/consolegames/config
-Cfile: [3.5 KB]
+Cfile: [3.4 KB]
 Class for loading a configuration file
-Cnode: [2.1 KB]
+Cnode: [2 KB]
 Class for configuration
 /enderbyteprograms/consolegames/games
 Game: [217 bytes]

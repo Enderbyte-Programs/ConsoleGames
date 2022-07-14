@@ -7,7 +7,6 @@ import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import enderbyteprograms.consolecolours;
 import enderbyteprograms.consolegames.config.Cfile;
 
@@ -58,11 +57,13 @@ public class Main {
     }
     public static void main(String[] args) {
         System.out.println("Consolegames: Loading...");
+        
         try 
-        {init(); //Adding games to list
+        {
+            init(); //Adding games to list
         cfg(); //Initializing global configuration
         iloop();
-        
+        //enderlib.delay(1000);
         int status = 0;
         while (true) {
             

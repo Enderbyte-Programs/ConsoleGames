@@ -4,7 +4,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
-
 import enderbyteprograms.consolecolours;
 import enderbyteprograms.consolegames.config.Cfile;
 import enderbyteprograms.consolegames.games.Game;
@@ -25,6 +24,9 @@ public class shared {
         System.out.println(consolecolours.RED_BRIGHT + "A critical early loading error occured.");
         e.printStackTrace();
         System.out.println(consolecolours.RESET);
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        e.printStackTrace(pw);
         System.exit(-1);
-}
+    }
 }
