@@ -12,6 +12,7 @@ How to Mod this program
 
         register game.name in shared.myoptions (shared.myoptions.add(name);)
         register configs (if applicable) [see section 3]
+        register statics (if applicable) [see section 4]
         Create a documentation (if applicable)
 
 2. Register game (sadly requires mixins)
@@ -30,3 +31,21 @@ How to Mod this program
 
     Within your game, Call your configurations with shared.configdat.findbyname(name).data
     DO NOT register configurations in the cfg() function unless they are needed BEFORE YOUR GAME INITIALIZES (unlikely). only SYSTEM CONFIGS go here.
+
+4. Register statistics (If applicable, do not use if you have no statistics to show)
+
+    4a. At the top of your class, put "private sgroup s = new sgroup(name)" (You must import enderbyteprograms.consolegames.stats.sgroup). Your name must not be set to "Back","Exit", or "System".
+    4b. Go to your init() function.
+    4c. After the shared.myoptions.add(name), create the statistics nodes. They will be automatically saved. 
+    4d. Make a node with s.newnode(String name, double startvalue).
+    4e. AFTER you have added your nodes, register the statistics group to the statistics file class.
+    4f. Do this with shared.stats.register(e).
+
+    Call your statistics with s.locate(name). THE NAMES MUST MUCH OTHERWISE AN ArrayOutOfBoundsException will be thrown.
+
+    Edit your statistics by NOT CALLING THEM NOT STATICALLY. This means it means 2 lines of code. 
+        4h.i.  snode _s = s.locate(name);
+        4h.ii. _s.set(newvalue);
+
+    4i. Inside stats.txt, statistics are structured group;name=value (Just in case you need to edit them manually which you shouldn't have to do.)
+    4j. Once the program is started, statistics are loaded in to memory and not read again. Statistics are automatically saved when you return to the main menu. If you need to do this previously, call shared.stats.save().

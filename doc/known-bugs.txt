@@ -1,0 +1,3 @@
+Known Bugs
+
+Some statistics double add on boot causing ridiculous numbers

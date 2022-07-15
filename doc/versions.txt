@@ -1,5 +1,5 @@
-SYSTEM v0.2
-Modding Core v2.0
+SYSTEM v0.3
+Modding Core v3.0
 
 Enderlib v0.4.1
 
@@ -9,4 +9,6 @@ testgame v1.2
 
 guess_the_number v1.1
 
-beat_the_bank v0.0.2
+beat_the_bank v1.0
+
+Sfile v1.0

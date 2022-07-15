@@ -2,6 +2,10 @@ package enderbyteprograms.consolegames;
 
 import enderbyteprograms.enderlib; //Shared library for my software
 import enderbyteprograms.consolegames.games.*;
+import enderbyteprograms.consolegames.stats.sfile;
+import enderbyteprograms.consolegames.stats.sgroup;
+import enderbyteprograms.consolegames.stats.snode;
+
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
@@ -11,10 +15,11 @@ import enderbyteprograms.consolecolours;
 import enderbyteprograms.consolegames.config.Cfile;
 
 public class Main {
-    
+    private static sgroup s;
     public static void init() {
         shared.myoptions.add("Exit");
         shared.myoptions.add("Options");
+        shared.myoptions.add("Statistics");
         shared.games.add(new testgame());
         shared.games.add(new guess_the_number());
         shared.games.add(new beat_the_bank());
@@ -55,6 +60,28 @@ public class Main {
         }
 
     }
+
+    public static void sinit() {
+        //Initializes statistics
+        Path p = Paths.get(enderlib.getcwd() + "/stats.txt");
+        try {
+            Files.createFile(p);
+        } catch (FileAlreadyExistsException l) {
+            //DO NOTHING
+        
+        } catch (IOException e) {
+            shared.EarlyLoadCrash(e);
+        } try {
+            shared.stats = new sfile(enderlib.getcwd() + "/stats.txt");
+        }catch (IOException e) {
+            shared.EarlyLoadCrash(e);
+        }
+        s = new sgroup("System");
+        s.newnode("Games Played",0);
+        s.newnode("Times Started",0);
+        shared.stats.register(s);
+        
+    }
     public static void main(String[] args) {
         System.out.println("Consolegames: Loading...");
         
@@ -62,12 +89,17 @@ public class Main {
         {
             init(); //Adding games to list
         cfg(); //Initializing global configuration
+        sinit();
         iloop();
+        snode __s = s.locate("Times Started");
+        __s.set(__s.value + 1);
+        shared.stats.save();
+        
         //enderlib.delay(1000);
         int status = 0;
         while (true) {
             
-            String _header = consolecolours.CYAN + "ConsoleGames v0.2-alpha (c) 2022 Enderbyte Programs" + consolecolours.RESET;
+            String _header = consolecolours.CYAN + "ConsoleGames v0.3 (c) 2022 Enderbyte Programs" + consolecolours.RESET;
             if (status!=0) {
                 _header = _header + consolecolours.RED_BRIGHT + "\nWe are sorry, but your previous game crashed.\n===STACKTRACE===:\n";
                 _header = _header + shared.crashstatus + consolecolours.RESET;
@@ -88,8 +120,16 @@ public class Main {
                 }
                 continue;
             }
-            Game g = shared.games.get(command-2);
+            if (command==2) {
+                shared.stats.createMenu();
+                continue;
+            }
+            Game g = shared.games.get(command-3);
             status = g.play();
+            snode _s = s.locate("Games Played");
+            
+            _s.set(_s.value + 1);
+            shared.stats.save();
         }
         System.out.println("Thank you for using consolegames!");
         //System.out.println(shared.games);

@@ -23,5 +23,8 @@ Choosing save will save to cfg.txt. Choosing cancel will not save your changes.
 
 username: Represents your name. You can set it to anything.
 
+=====Statistics=====
+Ths Statistics menu contains all of the statistics about your play. They are automatically saved to a file after every play. Statistics are grouped by game.
+
 =====Support=====
 For support, send an email to enderbyte09@gmail.com

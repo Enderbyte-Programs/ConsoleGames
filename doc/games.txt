@@ -1,5 +1,5 @@
 Please put game descriptions here.
 
-testgame (1.0 KB): A testing game for developmental purposes
+testgame (1009 bytes): A testing game for developmental purposes
 guess_the_number (3.6 KB): A game where you have to guess a number from 1-100 using clues
-beat_the_bank (2.3 KB): A game of luck where you need to open vaults and dodge the alarm.
+beat_the_bank (4.5 KB): A game of luck where you need to open vaults and dodge the alarm.
