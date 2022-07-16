@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Objects;
 
 public class file {
@@ -51,5 +52,9 @@ public class file {
         f2.write(data);
         f2.close();
         
+    }
+    public byte[] readbytes() throws IOException {
+        byte[] fileContent = Files.readAllBytes(new File(filename).toPath());
+        return fileContent;
     }
 }

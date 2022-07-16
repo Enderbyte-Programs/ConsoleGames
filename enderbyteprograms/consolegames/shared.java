@@ -8,6 +8,7 @@ import enderbyteprograms.consolecolours;
 import enderbyteprograms.enderlib;
 import enderbyteprograms.consolegames.config.Cfile;
 import enderbyteprograms.consolegames.games.Game;
+import enderbyteprograms.consolegames.sound.Sound;
 import enderbyteprograms.consolegames.stats.sfile;
 
 public class shared {
@@ -17,6 +18,8 @@ public class shared {
     public static Cfile configdat;
     public static sfile stats;
     public static List<String> credits = new  ArrayList<String>();
+    public static List<String> assetslist = new ArrayList<String>();
+    public static List<Sound> aloadlist = new ArrayList<Sound>();
     public static void defaultCrashHandler(Exception e) {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);

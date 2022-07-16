@@ -1,6 +1,7 @@
 package enderbyteprograms;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
@@ -146,5 +147,13 @@ public class enderlib {
             }
         }
         return -1;
+    }
+    public static boolean filexists(String fpn) {
+        File f = new File(fpn);
+        if(f.exists() && !f.isDirectory()) { 
+            return true;
+        }
+        return false;
+
     }
 }

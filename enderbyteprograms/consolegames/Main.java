@@ -5,14 +5,16 @@ import enderbyteprograms.consolegames.games.*;
 import enderbyteprograms.consolegames.stats.sfile;
 import enderbyteprograms.consolegames.stats.sgroup;
 import enderbyteprograms.consolegames.stats.snode;
-
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import enderbyteprograms.consolecolours;
 import enderbyteprograms.consolegames.config.Cfile;
+import enderbyteprograms.consolegames.sound.Sound;
 
 public class Main {
     private static sgroup s;
@@ -96,15 +98,41 @@ public class Main {
         snode __s = s.locate("Times Started");
         __s.set(__s.value + 1);
         shared.stats.save();
-        
+        Sound menumusic = new Sound("/menu.wav");
         //enderlib.delay(1000); //To show log
         int status = 0;
+        int sa = 0;
+        int k;
+        List<String> nfa = new ArrayList<String>();
+        for (k=0;k<shared.assetslist.size();k++) {
+            String nfp = shared.assetslist.get(k);
+            if (enderlib.filexists(nfp)) {
+                continue;
+            }
+            else {
+                sa = 1;
+                nfa.add(nfp);
+                
+            }
+        }
+        int m;
+        String _header_ =consolecolours.YELLOW+ "Some assets could not be found. Some games may crash";
+        for (m=0;m<nfa.size();m++) {
+            _header_ += nfa.get(m);
+            _header_ += "\n";
+        }
+        _header_ += consolecolours.RESET;
+        menumusic.play();
         while (true) {
             
             String _header = consolecolours.CYAN + "ConsoleGames Version 0.3.1" + consolecolours.RESET;
             if (status!=0) {
                 _header = _header + consolecolours.RED_BRIGHT + "\nWe are sorry, but your previous game crashed.\n===STACKTRACE===:\n";
                 _header = _header + shared.crashstatus + consolecolours.RESET;
+            }
+            if (sa!=0) {
+                _header += "\n";
+                _header += _header_;
             }
             int command = enderlib.menu(_header,"Main Menu",shared.myoptions);
             if (command==0) {
@@ -135,12 +163,14 @@ public class Main {
                 continue;
                 
             }
+            menumusic.stop();
             Game g = shared.games.get(command-4);
             status = g.play();
             snode _s = s.locate("Games Played");
             
             _s.set(_s.value + 1);
             shared.stats.save();
+            menumusic.play();
         }
         System.out.println("Thank you for using consolegames!");
         //System.out.println(shared.games);

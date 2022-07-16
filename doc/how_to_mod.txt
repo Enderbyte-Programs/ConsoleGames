@@ -52,3 +52,8 @@ How to Mod this program
 
 5. Register Credits (If you want to)
     5a. Inside of your init() function, add shared.credits.add("Credit");
+
+6. Register music
+    6a. Add the import enderbyteprograms.consolegames.sound.Sound
+    6b. Go back to your init() function.
+    6c. Create a new sound object with Sound(filename). It will be automatically registered anc checked on startup.
