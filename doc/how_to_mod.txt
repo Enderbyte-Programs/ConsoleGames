@@ -49,3 +49,6 @@ How to Mod this program
 
     4i. Inside stats.txt, statistics are structured group;name=value (Just in case you need to edit them manually which you shouldn't have to do.)
     4j. Once the program is started, statistics are loaded in to memory and not read again. Statistics are automatically saved when you return to the main menu. If you need to do this previously, call shared.stats.save().
+
+5. Register Credits (If you want to)
+    5a. Inside of your init() function, add shared.credits.add("Credit");

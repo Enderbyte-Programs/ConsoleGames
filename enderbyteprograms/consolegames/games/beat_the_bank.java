@@ -98,7 +98,7 @@ public class beat_the_bank implements Game{
         s.newnode("Plays",0);
         s.newnode("Money",0);
         shared.stats.register(s);
-        
+        shared.credits.add("Beat The Bank by Enderbyte Programs LLC");
         System.out.println("Beat The Bank is initialized");
     }
 

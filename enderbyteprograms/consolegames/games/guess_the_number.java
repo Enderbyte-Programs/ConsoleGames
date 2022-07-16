@@ -120,6 +120,7 @@ public class guess_the_number implements Game{
     }
     public void init() {
         shared.myoptions.add(name);
+        shared.credits.add("Guess The Number by Enderbyte Programs LLC");
         System.out.println("Guess The Number is initialized");
     }
 }

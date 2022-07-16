@@ -1,11 +1,11 @@
-Developer's Installation (source and compiled): 135 KB
+Developer's Installation (source and compiled): 136 KB
 
-Source installation: 91.8 KB
+Source installation: 93.5 KB
 
 Normal Installation: 
-	Executable JAR: 22.8 KB
+	Executable JAR: 23.2 KB
 	Appdata: At least 138 bytes
-	Documentation: 10 KB
+	Documentation: 6.38 KB
 
 Source Package Size:
 	Root Utilities: 9.0 KB

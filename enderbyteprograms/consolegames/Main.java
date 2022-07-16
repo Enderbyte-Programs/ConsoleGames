@@ -20,6 +20,8 @@ public class Main {
         shared.myoptions.add("Exit");
         shared.myoptions.add("Options");
         shared.myoptions.add("Statistics");
+        shared.myoptions.add("Credits");
+        shared.credits.add("Consolegames (c) 2022 Enderbyte Programs LLC, some rights reserved.");
         shared.games.add(new testgame());
         shared.games.add(new guess_the_number());
         shared.games.add(new beat_the_bank());
@@ -95,11 +97,11 @@ public class Main {
         __s.set(__s.value + 1);
         shared.stats.save();
         
-        //enderlib.delay(1000);
+        //enderlib.delay(1000); //To show log
         int status = 0;
         while (true) {
             
-            String _header = consolecolours.CYAN + "ConsoleGames v0.3 (c) 2022 Enderbyte Programs" + consolecolours.RESET;
+            String _header = consolecolours.CYAN + "ConsoleGames Version 0.3.1" + consolecolours.RESET;
             if (status!=0) {
                 _header = _header + consolecolours.RED_BRIGHT + "\nWe are sorry, but your previous game crashed.\n===STACKTRACE===:\n";
                 _header = _header + shared.crashstatus + consolecolours.RESET;
@@ -113,10 +115,7 @@ public class Main {
                 try {
                     shared.configdat.makemenu();
                 } catch (IOException e) {
-                    System.out.println(consolecolours.RED_BRIGHT + "A critical error occured.");
-                    e.printStackTrace();
-                    System.out.println(consolecolours.RESET);
-                    System.exit(-1);
+                    shared.FatalCrash(e);
                 }
                 continue;
             }
@@ -124,7 +123,19 @@ public class Main {
                 shared.stats.createMenu();
                 continue;
             }
-            Game g = shared.games.get(command-3);
+            if (command==3) {
+                System.out.println("Credits");
+                System.out.println("--------------------------------");
+                int i;
+                for (i=0;i<shared.credits.size();i++) {
+                    System.out.println(shared.credits.get(i));
+                }
+                System.out.println("--------------------------------");
+                enderlib.input("Press enter to return to menu...");
+                continue;
+                
+            }
+            Game g = shared.games.get(command-4);
             status = g.play();
             snode _s = s.locate("Games Played");
             
@@ -136,7 +147,7 @@ public class Main {
         //System.out.println(shared.myoptions);
         enderlib.closeInput();}
         catch (Exception e) {
-            shared.EarlyLoadCrash(e);
+            shared.FatalCrash(e);
         }
     }
 }
