@@ -1,6 +1,8 @@
 package enderbyteprograms.consolegames.games;
 
 import enderbyteprograms.consolegames.shared;
+import enderbyteprograms.consolegames.sound.Sound;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -12,11 +14,15 @@ import enderbyteprograms.consolegames.stats.snode;
 public class beat_the_bank implements Game{
     public static String name = "Beat The Bank";
     private sgroup s = new sgroup(name);
+    private Sound mus;
+    private Sound mn;
+    private Sound alm;
     public int play() {
         try {
             //game here
             List<String> ol = new ArrayList<String>();
             List<Integer> pl = new ArrayList<Integer>();
+            List<Integer> plo = new ArrayList<Integer>();
             pl.add(0);
             pl.add(10);
             pl.add(50);
@@ -27,14 +33,23 @@ public class beat_the_bank implements Game{
             pl.add(0);
             pl.add(250);
             pl.add(300);
+            plo.add(10);
+            plo.add(50);
+            plo.add(100);
+            plo.add(150);
+            plo.add(200);
+            plo.add(250);
+            plo.add(300);
             ol.add("Quit");
             ol.add("Play");
             ol.add("How to Play");
+            mus.play();
             while (true)
             {
                 double tmoney = s.locate("Money").value;
                 int m = enderlib.menu("Welcome to Beat The Bank, " + shared.configdat.findbyname("username").data + "!","Menu",ol);
                 if (m==0) {
+                    mus.stop();
                     break;
                 }
 
@@ -42,14 +57,20 @@ public class beat_the_bank implements Game{
                     boolean gameon = true;
                     int money = 0;
                     int vault = 0;
+                    
                     while (gameon) {
                         enderlib.clearscreen();
                         vault += 1;
                         System.out.println("You have $"+money);
                         String ov = enderlib.input("Would you like to open vault " + vault + "?");
                         if (Objects.equals(ov.substring(0,1),"y")) {
-                            int ir = choose(pl);
+                            int ir;
+                            if (vault<3) {
+                                ir = choose(plo);
+                            }else 
+                            {ir = choose(pl);}
                             if (ir==0) {
+                                alm.play();
                                 money = 0;
                                 gameon = false;
                                 snode l = s.locate("Alarms");
@@ -60,6 +81,7 @@ public class beat_the_bank implements Game{
                                 enderlib.delay(2000);
                                 break;
                             } else {
+                                mn.play();
                                 money += ir;
                                 System.out.println("Vault " + vault + " contained $" + ir + " for a total of $" + money);
                                 enderlib.delay(1000);
@@ -86,6 +108,7 @@ public class beat_the_bank implements Game{
                 }
             }
         } catch (Exception e) { //Ambiguous error checking, will set MAIN stack trace
+            mus.stop();
             shared.defaultCrashHandler(e);
             return 1;
         }
@@ -99,6 +122,10 @@ public class beat_the_bank implements Game{
         s.newnode("Money",0);
         shared.stats.register(s);
         shared.credits.add("Beat The Bank by Enderbyte Programs LLC");
+        mus = new Sound("/ndh.wav");
+        mn = new Sound("/mny.wav");
+        alm = new Sound("/alarme.wav");
+        
         System.out.println("Beat The Bank is initialized");
     }
 

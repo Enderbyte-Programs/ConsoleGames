@@ -23,6 +23,10 @@ sfile: [4.2 KB]
 A class for storing statistics files. Contains lists of sgroups
 sgroup: [2.4 KB]
 A class for grouping statistics by game
-snode: [1.3 KB] A class for storing a single statistic.
+snode: [1.3 KB] 
+A class for storing a single statistic.
+/enderbyteprograms/consolegames/sound
+sound: [3.2 KB]
+A class for storing a sound used by games
 
 ALL OTHER CLASSES ARE MODDED. PLEASE ADHERE TO GAMES.TXT FOR MORE INFORMATION

@@ -125,7 +125,7 @@ public class Main {
         menumusic.play();
         while (true) {
             
-            String _header = consolecolours.CYAN + "ConsoleGames Version 0.3.1" + consolecolours.RESET;
+            String _header = consolecolours.CYAN + "ConsoleGames Version 0.3.2" + consolecolours.RESET;
             if (status!=0) {
                 _header = _header + consolecolours.RED_BRIGHT + "\nWe are sorry, but your previous game crashed.\n===STACKTRACE===:\n";
                 _header = _header + shared.crashstatus + consolecolours.RESET;
