@@ -2,7 +2,12 @@ package enderbyteprograms;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -40,6 +45,25 @@ public class enderlib {
         
     
     }
+    public static String getcmdasstr(String command) {
+        String s;
+        Process p;
+        StringBuilder sb = new StringBuilder();
+        try {
+            p = Runtime.getRuntime().exec(command);
+            BufferedReader br = new BufferedReader(
+                new InputStreamReader(p.getInputStream()));
+            while ((s = br.readLine()) != null)
+                sb.append(s);
+            p.waitFor();
+            
+            p.destroy();
+            return sb.toString();
+        
+        } catch (Exception e) {
+            return "error";
+        }
+    }
 
     public static void clearscreen() {
         Process p;
@@ -53,7 +77,8 @@ public class enderlib {
             p.waitFor();
             
             p.destroy();
-        } catch (Exception e) {}  
+        } catch (Exception e) {} 
+        System.out.print("\033[H"); 
     }
 
     public static void delay(int ms) {
@@ -155,5 +180,23 @@ public class enderlib {
         }
         return false;
 
+        
+    }
+    public static void printrep(String msg, int times,String end) {
+        int i;
+        for (i=0;i<times;i++) {
+            System.out.print(msg);
+        }
+        System.out.print(end);
+    }
+    public static void cgoto(int x, int y) {
+        char escCode = 0x1B;
+        System.out.print(String.format("%c[%d;%df",escCode,y,x));
+
+    }
+    public static long download(String url, String fileName) throws IOException {
+        try (InputStream in = URI.create(url).toURL().openStream()) {
+            return Files.copy(in, Paths.get(fileName));
+        }
     }
 }

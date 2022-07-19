@@ -8,11 +8,13 @@ import java.util.List;
 import java.util.Objects;
 import enderbyteprograms.consolecolours;
 import enderbyteprograms.enderlib;
+import enderbyteprograms.LogR.LogGroup;
 import enderbyteprograms.consolegames.stats.sgroup;
 import enderbyteprograms.consolegames.stats.snode;
 
 public class beat_the_bank implements Game{
     public static String name = "Beat The Bank";
+    private static LogGroup logger = shared.lf.register("Beat The Bank");
     private sgroup s = new sgroup(name);
     private Sound mus;
     private Sound mn;
@@ -126,7 +128,8 @@ public class beat_the_bank implements Game{
         mn = new Sound("/mny.wav");
         alm = new Sound("/alarme.wav");
         
-        System.out.println("Beat The Bank is initialized");
+        //System.out.println("Beat The Bank is initialized");
+        logger.info("Beat The Bank is initialized");
     }
 
     public int choose(List<Integer> pl) {

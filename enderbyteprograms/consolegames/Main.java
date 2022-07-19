@@ -1,6 +1,7 @@
 package enderbyteprograms.consolegames;
 
 import enderbyteprograms.enderlib; //Shared library for my software
+import enderbyteprograms.LogR.LogGroup;
 import enderbyteprograms.consolegames.games.*;
 import enderbyteprograms.consolegames.stats.sfile;
 import enderbyteprograms.consolegames.stats.sgroup;
@@ -18,6 +19,7 @@ import enderbyteprograms.consolegames.sound.Sound;
 
 public class Main {
     private static sgroup s;
+    private static LogGroup logger = shared.lf.register("Main");
     public static void init() {
         shared.myoptions.add("Exit");
         shared.myoptions.add("Options");
@@ -87,22 +89,30 @@ public class Main {
         
     }
     public static void main(String[] args) {
-        System.out.println("Consolegames: Loading...");
-        
+        //LogSys.init();
+        logger.info("Starting Consolegames");
+        shared.startMsg();
+        System.out.print("Starting Consolegames\r");
         try 
         {
+            logger.info("Preparing games");
             init(); //Adding games to list
+            logger.info("Preparing Configurations");
         cfg(); //Initializing global configuration
+        logger.info("Preparing Statistics");
         sinit();
+        logger.info("Initializing games...");
+
         iloop();
         snode __s = s.locate("Times Started");
         __s.set(__s.value + 1);
         shared.stats.save();
         Sound menumusic = new Sound("/menu.wav");
-        //enderlib.delay(1000); //To show log
+        enderlib.delay(5000); //To show log
         int status = 0;
         int sa = 0;
         int k;
+
         List<String> nfa = new ArrayList<String>();
         for (k=0;k<shared.assetslist.size();k++) {
             String nfp = shared.assetslist.get(k);
@@ -122,11 +132,15 @@ public class Main {
             _header_ += "\n";
         }
         _header_ += consolecolours.RESET;
+
         menumusic.play();
+        logger.info("Consolegames is started");
+        int command = 0;
         while (true) {
             
-            String _header = consolecolours.CYAN + "ConsoleGames Version 0.3.2" + consolecolours.RESET;
+            String _header = consolecolours.CYAN + "ConsoleGames Version 0.3.3" + consolecolours.RESET;
             if (status!=0) {
+                logger.error("Error in game " + shared.myoptions.get(command) + ".\n" + shared.crashstatus);
                 _header = _header + consolecolours.RED_BRIGHT + "\nWe are sorry, but your previous game crashed.\n===STACKTRACE===:\n";
                 _header = _header + shared.crashstatus + consolecolours.RESET;
             }
@@ -134,7 +148,7 @@ public class Main {
                 _header += "\n";
                 _header += _header_;
             }
-            int command = enderlib.menu(_header,"Main Menu",shared.myoptions);
+            command = enderlib.menu(_header,"Main Menu",shared.myoptions);
             if (command==0) {
                 //exiting
                 break;

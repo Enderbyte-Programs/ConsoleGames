@@ -57,4 +57,9 @@ public class file {
         byte[] fileContent = Files.readAllBytes(new File(filename).toPath());
         return fileContent;
     }
+    public void append(String data) throws IOException {
+        String edata = read();
+        String fulldata = edata + data;
+        write(fulldata);
+    }
 }

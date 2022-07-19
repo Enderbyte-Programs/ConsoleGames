@@ -1,7 +1,9 @@
 package enderbyteprograms.consolegames.games;
 
 import enderbyteprograms.enderlib;
+import enderbyteprograms.LogR.LogGroup;
 import enderbyteprograms.consolegames.shared;
+import enderbyteprograms.consolegames.sound.Sound;
 import enderbyteprograms.consolecolours;
 
 import java.io.PrintWriter;
@@ -12,6 +14,8 @@ import java.util.Objects;
 
 public class guess_the_number implements Game{
     public static String name = "Guess the Number";
+    private Sound mus;
+    private static LogGroup logger = shared.lf.register(name);
     private void winhandler(Boolean won,String answer) {
         List<String> o = new ArrayList<String>();
         o.add("Return to menu");
@@ -50,6 +54,7 @@ public class guess_the_number implements Game{
     }
     public int play() {
         try {
+            mus.play();
             Boolean gameon = true;
             Boolean won = false;
             List<String> guessed = new ArrayList<String>();
@@ -114,13 +119,18 @@ public class guess_the_number implements Game{
             PrintWriter pw = new PrintWriter(sw);
             e.printStackTrace(pw);
             shared.crashstatus = sw.toString();
+            mus.stop();
             return 1;
         }
+        mus.stop();
         return 0;
     }
     public void init() {
         shared.myoptions.add(name);
+        mus = new Sound("/menu.wav");
         shared.credits.add("Guess The Number by Enderbyte Programs LLC");
-        System.out.println("Guess The Number is initialized");
+        logger.info("Guess The Number is initialized");
+        
+        //System.out.println("Guess The Number is initialized");
     }
 }
