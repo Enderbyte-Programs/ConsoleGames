@@ -28,5 +28,16 @@ A class for storing a single statistic.
 /enderbyteprograms/consolegames/sound
 sound: [3.2 KB]
 A class for storing a sound used by games
+/enderbyteprograms/LogR
+LogFile: [3.4 KB]
+A class for storing log files
+LogGroup: [2.3 KB]
+A class for storing a class's logs
+LogMessage: [594 bytes]
+A class for storing a single log line
+LogSeverity: [343 bytes]
+A class for making custom severities
+LogSys: [820 bytes]
+Shared static logging utilities
 
 ALL OTHER CLASSES ARE MODDED. PLEASE ADHERE TO GAMES.TXT FOR MORE INFORMATION

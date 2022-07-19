@@ -56,6 +56,12 @@ How to Mod this program
 6. Register music
     6a. Add the import enderbyteprograms.consolegames.sound.Sound
     6b. Go back to your init() function.
-    6c. Create a new sound object with Sound(filename). It will be automatically registered and checked on startup.
+    6c. Create a new sound object with Sound(url,filename). It will be automatically registered and checked on startup. IMPORTANT: PLEASE HOST A DIRECT DOWNLOAD TO YOUR MUSIC FILE IN AN EXTERNAL URL SUCH AS GITHUB. FAILURE TO DO THIS WILL RESULT IN A CRASH.
     6d. Play your sound with .play(), stop it with .stop().
     REMEMBER: Have appropriate checking if sound exists or else it will crash.
+
+7. Prepare Logging
+    Sometimes, it's nice to have logging that will go to a file rather than the output where your game will be.
+    7a. Import LogGroup (enderbyteprograms.LogR.LogGroup)
+    7b. Create your own LogGroup with shared.lf.register(name)
+    7c. Use the object to log. All logging is saved to consolegames.log

@@ -13,11 +13,13 @@ import java.io.FileInputStream;
 
 public class Sound {
     public String filename;
+    public String url;
     public Thread plt;
     public Clip clip;
-    public Sound(String fname) {
+    public Sound(String u,String fname) {
         filename = enderlib.getcwd() + "/assets" + fname;
-        shared.assetslist.add(filename);
+        url = u;
+        shared.assetslist.add(this);
     }
     
     public synchronized void play() {

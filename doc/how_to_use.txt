@@ -5,7 +5,7 @@ Welcome to ConsoleGames, a customizeable set of games for your console.
 =====Execution=====
 Execute the program by opening a terminal to the folder of your choice and running "java -jar <Path to disk>/consolegames.jar". On windows this will probably be D:\. For unix, check your mount points.
 
-While the program initializes (usually less than 200 ms), the screen will print: Loading.
+While the program initializes A splash screen will be shown along with the loading statistics. On the first execution, it may take a few minutes to download all of the assets needed. If there is an issue, it will be printed.
 
 =====Main Menu=====
 The main menu will prompt you to type an option. 0 is Exit and will safely quit the program returning you to the terminal. 1 will open configuration (SEE OPTIONS).

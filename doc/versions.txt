@@ -1,16 +1,18 @@
-SYSTEM v0.3.2
-Modding Core v4.0
+SYSTEM v0.4
+Modding Core v4.1
 
-Enderlib v0.4.2
+Enderlib v0.5
 
 CFile v1.0
 
-testgame v1.2
+testgame v1.3
 
-guess_the_number v1.1
+guess_the_number v1.2
 
-beat_the_bank v1.2
+beat_the_bank v1.3
 
 Sfile v1.0
 
 Soundsys v1.0
+
+LogR v1.0

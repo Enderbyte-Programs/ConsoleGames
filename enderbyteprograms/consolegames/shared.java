@@ -10,6 +10,7 @@ import enderbyteprograms.LogR.LogGroup;
 import enderbyteprograms.LogR.Logfile;
 import enderbyteprograms.consolegames.config.Cfile;
 import enderbyteprograms.consolegames.games.Game;
+import enderbyteprograms.consolegames.sound.Sound;
 import enderbyteprograms.consolegames.stats.sfile;
 
 public class shared {
@@ -19,7 +20,7 @@ public class shared {
     public static Cfile configdat;
     public static sfile stats;
     public static List<String> credits = new  ArrayList<String>();
-    public static List<String> assetslist = new ArrayList<String>();
+    public static List<Sound> assetslist = new ArrayList<Sound>();
     public static int lines = Integer.parseInt(enderlib.getcmdasstr("tput lines"));
     public static int columns = Integer.parseInt(enderlib.getcmdasstr("tput cols"));
     public static Logfile lf = new Logfile(enderlib.getcwd() + "/consolegames.log");

@@ -6,6 +6,8 @@ import enderbyteprograms.consolegames.games.*;
 import enderbyteprograms.consolegames.stats.sfile;
 import enderbyteprograms.consolegames.stats.sgroup;
 import enderbyteprograms.consolegames.stats.snode;
+
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
@@ -88,6 +90,7 @@ public class Main {
         shared.stats.register(s);
         
     }
+
     public static void main(String[] args) {
         //LogSys.init();
         logger.info("Starting Consolegames");
@@ -107,22 +110,34 @@ public class Main {
         snode __s = s.locate("Times Started");
         __s.set(__s.value + 1);
         shared.stats.save();
-        Sound menumusic = new Sound("/menu.wav");
-        enderlib.delay(5000); //To show log
+        Sound menumusic = new Sound("https://github.com/Enderbyte-Programs/ConsoleGames/releases/download/assets/menu.wav","/menu.wav");
+        //enderlib.delay(5000); //To show log
         int status = 0;
         int sa = 0;
         int k;
-
+        System.out.print("Downloading Assets... (This may take a few minutes)\r");
         List<String> nfa = new ArrayList<String>();
+        try
+        {new File(enderlib.getcwd() + "/assets").mkdirs();}
+        catch (Exception f) {
+            //DO NOTHING
+        }
         for (k=0;k<shared.assetslist.size();k++) {
-            String nfp = shared.assetslist.get(k);
-            if (enderlib.filexists(nfp)) {
+            Sound nfp = shared.assetslist.get(k);
+            if (enderlib.filexists(nfp.filename)) {
                 continue;
             }
             else {
-                sa = 1;
-                nfa.add(nfp);
-                
+                //try {
+                  //  Files.createFile(Paths.get(nfp.filename));
+                //} catch (FileAlreadyExistsException f) {
+                    //DO NOTHING
+                //}
+                try {
+                    enderlib.download(nfp.url,nfp.filename);
+                } catch (Exception e) {
+                    shared.FatalCrash(e);
+                }
             }
         }
         int m;
@@ -138,7 +153,7 @@ public class Main {
         int command = 0;
         while (true) {
             
-            String _header = consolecolours.CYAN + "ConsoleGames Version 0.3.3" + consolecolours.RESET;
+            String _header = consolecolours.CYAN + "ConsoleGames Version 0.4" + consolecolours.RESET;
             if (status!=0) {
                 logger.error("Error in game " + shared.myoptions.get(command) + ".\n" + shared.crashstatus);
                 _header = _header + consolecolours.RED_BRIGHT + "\nWe are sorry, but your previous game crashed.\n===STACKTRACE===:\n";

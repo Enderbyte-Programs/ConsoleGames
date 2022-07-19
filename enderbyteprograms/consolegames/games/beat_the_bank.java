@@ -124,9 +124,9 @@ public class beat_the_bank implements Game{
         s.newnode("Money",0);
         shared.stats.register(s);
         shared.credits.add("Beat The Bank by Enderbyte Programs LLC");
-        mus = new Sound("/ndh.wav");
-        mn = new Sound("/mny.wav");
-        alm = new Sound("/alarme.wav");
+        mus = new Sound("https://github.com/Enderbyte-Programs/ConsoleGames/releases/download/assets/ndh.wav","/ndh.wav");
+        mn = new Sound("https://github.com/Enderbyte-Programs/ConsoleGames/releases/download/assets/mny.wav","/mny.wav");
+        alm = new Sound("https://github.com/Enderbyte-Programs/ConsoleGames/releases/download/assets/alarme.wav","/alarme.wav");
         
         //System.out.println("Beat The Bank is initialized");
         logger.info("Beat The Bank is initialized");

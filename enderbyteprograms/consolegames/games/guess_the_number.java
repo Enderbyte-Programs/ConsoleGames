@@ -127,7 +127,7 @@ public class guess_the_number implements Game{
     }
     public void init() {
         shared.myoptions.add(name);
-        mus = new Sound("/menu.wav");
+        mus = new Sound("https://github.com/Enderbyte-Programs/ConsoleGames/releases/download/assets/menu.wav","/menu.wav");
         shared.credits.add("Guess The Number by Enderbyte Programs LLC");
         logger.info("Guess The Number is initialized");
         

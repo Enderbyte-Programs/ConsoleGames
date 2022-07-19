@@ -1,15 +1,13 @@
-Developer's Installation (source and compiled): 136 KB
-
-Source installation: 93.5 KB
-
 Normal Installation: 
-	Executable JAR: 23.2 KB
-	Appdata: At least 138 bytes
-	Documentation: 6.38 KB
+	Executable JAR: 26.3 KB
+	Appdata: At least 80 MB
+	Documentation: 7 KB
 
 Source Package Size:
-	Root Utilities: 9.0 KB
-	System Core: 6.5 KB
+	Root Utilities: 9.4 KB
+	System Core: 7.5 KB
 	Configuration System: 5.4 KB
 	Statistics System: 7.9 KB
-	Games: 9.35 KB
+	Games: 9.71 KB
+
+	SOUND ASSETS: 80 MB.
